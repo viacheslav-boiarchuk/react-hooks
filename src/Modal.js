@@ -1,26 +1,35 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import './App.css';
 
-let nameList = ['Antony', 'Simon', 'O\'Really', 'Mike', 'Kristine', 'Kimberly', 'Cole'];
+/**
+ * Modal component which create window for changing persons info
+ *
+ * @param {Object} props
+ */
 
-export function List() {
-    const [modalState, setModalState] = useState(false);
+export function Modal(props) {
+    let {displayModal, toggleModal, changePerson} = props,
+        displayModalClass = (!displayModal) ? 'hide' : 'show';
+    const inputEl = useRef(null);
 
-    console.log(modalState);
+    const savePersonName = () => {
+        let el = inputEl.current;
+        changePerson(el.value);
+        el.value = '';
+        toggleModal();
+    };
+
+    const closeModal = () => {
+        inputEl.current.value = '';
+        toggleModal();
+    };
 
     return (
-    <div className="names-container">
-        <h2>Users List</h2>
-        <ul>
-            {
-                nameList.map((item, counter) => {
-                    let uniqKey = counter+'-'+item;
-                    return <li key={uniqKey}
-                               data-id={uniqKey}
-                               onClick={() => {setModalState(!modalState)}}>{counter}. {item}</li>
-                })
-            }
-        </ul>
-    </div>
-  );
+        <div className={displayModalClass + " " + "modal-container"}>
+            <h3>Please fill new name:</h3>
+            <input type="text" ref={inputEl} placeholder={"Stacey"}/>
+            <button onClick={() => savePersonName()}>Save</button>
+            <button onClick={()=> closeModal()}>Cancel</button>
+        </div>
+      );
 }

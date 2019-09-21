@@ -20,3 +20,56 @@
 .App-link {
   color: #09d3ac;
 }
+
+ul,
+li {
+    list-style: none;
+}
+
+ul {
+    margin: 40px;
+    padding: 0;
+}
+
+li {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.modal-container {
+    padding: 30px;
+    border: 1px solid brown;
+    background: #fff;
+    width: 400px;
+    position: absolute;
+    left: 2%;
+    transition: all 1s ease-out;
+    box-sizing: border-box;
+}
+
+.modal-container.hide {
+    top: -100%;
+}
+
+.modal-container.show {
+    top: 20%;
+}
+
+.modal-container > * {
+    display: block;
+    clear: both;
+    margin: 10px auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.modal-container input{
+    display: block;
+    clear: both;
+    margin: 10px auto;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: none;
+    padding: 5px;
+}
